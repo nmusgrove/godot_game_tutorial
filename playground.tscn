@@ -5,3 +5,4 @@
 [node name="Playground" type="Node2D" unique_id=806971347]
 
 [node name="Player" parent="." unique_id=487567081 instance=ExtResource("1_rupst")]
+position = Vector2(153, 113)
