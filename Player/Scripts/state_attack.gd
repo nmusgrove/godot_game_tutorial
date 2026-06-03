@@ -10,6 +10,7 @@ var is_attacking: bool = false
 @onready var animation_player:  AnimationPlayer = $"../../AnimationPlayer"
 @onready var attack_animation_player: AnimationPlayer = $"../../Sprite2D/AttackEffectSprite/AnimationPlayer"
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $"../../Audio/AudioStreamPlayer2D"
+@onready var hurt_box: HurtBox = $"../../Interactions/HurtBox"
 
 const STATE: String = "attack"
 
@@ -22,11 +23,13 @@ func Enter() -> void:
 	audio_stream_player_2d.pitch_scale = randf_range(0.9, 1.1)
 	audio_stream_player_2d.play()
 	is_attacking = true
+	hurt_box.monitoring = true
 	pass
 	
 func Exit() -> void:
 	animation_player.animation_finished.disconnect(end_attack)
 	is_attacking = false
+	hurt_box.monitoring = false
 	pass
 
 func Process( _delta: float) -> State:
@@ -46,4 +49,5 @@ func HandleInput( _event: InputEvent) -> State:
 	
 func end_attack(_anim_name: StringName) ->   void:
 	is_attacking = false
+	hurt_box.monitoring = false
 	
