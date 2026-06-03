@@ -10,7 +10,7 @@ var is_attacking: bool = false
 @onready var animation_player:  AnimationPlayer = $"../../AnimationPlayer"
 @onready var attack_animation_player: AnimationPlayer = $"../../Sprite2D/AttackEffectSprite/AnimationPlayer"
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $"../../Audio/AudioStreamPlayer2D"
-@onready var hurt_box: HurtBox = $"../../Interactions/HurtBox"
+@onready var hurt_box: HurtBox = %AttackHurtBox
 
 const STATE: String = "attack"
 
@@ -23,6 +23,7 @@ func Enter() -> void:
 	audio_stream_player_2d.pitch_scale = randf_range(0.9, 1.1)
 	audio_stream_player_2d.play()
 	is_attacking = true
+	await  get_tree().create_timer(0.075).timeout
 	hurt_box.monitoring = true
 	pass
 	
