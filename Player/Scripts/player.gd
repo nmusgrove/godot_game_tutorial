@@ -12,6 +12,7 @@ const DIR_4 = [Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	PlayerManager.player = self
 	state_machine.Initialize(self)
 	pass # Replace with function body.
 
