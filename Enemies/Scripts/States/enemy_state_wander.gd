@@ -21,7 +21,6 @@ func init() -> void:
 func enter() -> void:
 	_timer = randi_range(state_cycles_min, state_cycles_max)
 	var rand = randi_range(0,3)
-	enemy.update_animation(animation_name)
 	_direction = enemy.DIR_4[rand]
 	enemy.velocity = _direction * wander_speed
 	enemy.set_direction(_direction)
