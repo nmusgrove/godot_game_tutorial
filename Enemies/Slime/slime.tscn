@@ -11,10 +11,11 @@
 [ext_resource type="Script" uid="uid://dh0q2hwhxa4w2" path="res://Enemies/Scripts/States/enemy_state_stun.gd" id="8_pydiu"]
 [ext_resource type="Script" uid="uid://cjx0o1am1la5j" path="res://Enemies/Scripts/States/enemy_state_destroy.gd" id="9_2qn7y"]
 [ext_resource type="Texture2D" uid="uid://bepdimlwa67kx" path="res://Enemies/Sprites/DestroySmoke.png" id="9_pydiu"]
+[ext_resource type="PackedScene" uid="uid://dotucwo6tbqv1" path="res://GeneralNodes/HurtBox/hurt_box.tscn" id="12_2qn7y"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oij8y"]
 radius = 6.0
-height = 24.0
+height = 22.0
 
 [sub_resource type="Animation" id="Animation_wwfkb"]
 length = 0.001
@@ -771,8 +772,11 @@ _data = {
 &"walk_up": SubResource("Animation_fjr0p")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_843tw"]
+radius = 13.038404
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_67htc"]
-radius = 12.0415945
+radius = 13.038404
 
 [sub_resource type="Animation" id="Animation_5lnrd"]
 length = 0.001
@@ -878,12 +882,19 @@ next_state = NodePath("../Idle")
 [node name="Destroy" type="Node" parent="EnemyStateMachine" unique_id=2043849833]
 script = ExtResource("9_2qn7y")
 
+[node name="HurtBox" parent="." unique_id=1741358788 instance=ExtResource("12_2qn7y")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=447049602]
+position = Vector2(0, -8)
+shape = SubResource("CircleShape2D_843tw")
+debug_color = Color(0.85, 0.8216667, 0, 0.41960785)
+
 [node name="HitBox" parent="." unique_id=1956633538 instance=ExtResource("8_fjr0p")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=99816059]
 position = Vector2(0, -8)
 shape = SubResource("CircleShape2D_67htc")
-debug_color = Color(0.9997789, 0, 0.11687701, 0.41960785)
+debug_color = Color(1, 0.03333336, 0, 0.41960785)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=501140658]
 
